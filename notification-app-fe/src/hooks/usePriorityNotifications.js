@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchNotifications } from "../api/notifications.js";
-import { PAGE_SIZE } from "../config/constants.js";
+import { fetchPriorityNotifications } from "../api/notifications.js";
 import { logError } from "../utils/logger.js";
 
-export function useNotifications(filter = "All", page = 1) {
+export function usePriorityNotifications(filter = "All", limit = 10) {
   const [notifications, setNotifications] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,16 +11,8 @@ export function useNotifications(filter = "All", page = 1) {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchNotifications({
-        page,
-        limit: PAGE_SIZE,
-        notification_type: filter,
-      });
-
+      const data = await fetchPriorityNotifications({ limit, notification_type: filter });
       setNotifications(data.notifications ?? []);
-      setTotalPages(
-        data.totalPages ?? data.meta?.total_pages ?? Math.max(1, Math.ceil((data.total ?? 0) / PAGE_SIZE))
-      );
     } catch (err) {
       logError("hook", err.message);
       setError(err.message);
@@ -30,11 +20,11 @@ export function useNotifications(filter = "All", page = 1) {
     } finally {
       setLoading(false);
     }
-  }, [filter, page]);
+  }, [filter, limit]);
 
   useEffect(() => {
     load();
   }, [load]);
 
-  return { notifications, totalPages, loading, error, reload: load };
+  return { notifications, loading, error, reload: load };
 }
