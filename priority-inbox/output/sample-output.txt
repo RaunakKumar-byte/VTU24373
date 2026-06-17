@@ -1,0 +1,28 @@
+Priority Inbox — Stage 6 sample output (stream simulation).
+
+Run: npm run demo:stream
+
+=== Stream Simulation — O(log 10) per arrival ===
+
+[ADDED] Event      | farewell
+[ADDED] Result     | mid-sem
+[ADDED] Placement  | CSX Corporation hiring
+[ADDED] Result     | mid sem
+[ADDED] Placement  | Advanced Micro Devices Inc. hiring
+[SKIP  ] Event      | tech-fest
+[ADDED] Result     | project-review
+
+=== Priority Inbox — Top Unread Notifications ===
+
+ Rank | Type      | Weight | Timestamp           | Message                            | ID
+------+-----------+--------+---------------------+------------------------------------+--------------
+ 1    | Placement | 3      | 2024-04-22 17:51:18 | CSX Corporation hiring             | b283218f-...
+ 2    | Placement | 3      | 2024-04-22 17:49:42 | Advanced Micro Devices Inc. hiring | 8a7412bd-...
+ 3    | Result    | 2      | 2024-04-22 17:51:30 | mid sem                            | d146095a-...
+ 4    | Result    | 2      | 2024-04-22 17:50:54 | mid-sem                            | 8035513a-...
+ 5    | Result    | 2      | 2024-04-22 17:50:18 | project-review                     | e5c4ff20-...
+ 6    | Event     | 1      | 2024-04-22 17:51:06 | farewell                           | 81589ada-...
+
+Showing 6 of 6 inbox items.
+
+Note: Live API output (npm start) requires AUTHORIZATION_TOKEN in .env.
