@@ -1,0 +1,8 @@
+{
+  "email": "your_email@college.edu",
+  "name": "Your Name",
+  "rollNo": "your_roll_no",
+  "accessCode": "your_access_code",
+  "clientID": "your_client_id_from_register",
+  "clientSecret": "your_client_secret_from_register"
+}
